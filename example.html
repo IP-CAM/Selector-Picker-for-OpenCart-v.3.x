@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selector Picker - Пример использования</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- Selector Picker CSS -->
+    <link rel="stylesheet" href="selector_picker.css">
+    
+    <style>
+        body {
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .panel {
+            margin-top: 20px;
+        }
+        .example-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .code-block {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        pre {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>Selector Picker <small>Пример использования</small></h1>
+        </div>
+        
+        <div class="alert alert-info">
+            <p><strong>Selector Picker</strong> - это модуль для выбора CSS-селекторов элементов на веб-странице. Позволяет открыть любую веб-страницу в модальном окне, выбрать элемент на странице и получить его CSS-селектор.</p>
+        </div>
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Базовый пример</h3>
+            </div>
+            <div class="panel-body">
+                <div class="example-section">
+                    <div class="form-group">
+                        <label>URL страницы:</label>
+                        <div class="input-group">
+                            <input type="text" id="page-url" class="form-control" placeholder="https://example.com" value="https://opencart.com">
+                            <span class="input-group-btn">
+                                <button type="button" id="open-selector-btn" class="btn btn-primary">Открыть</button>
+                            </span>
+                        </div>
+                        <p class="help-block">Введите URL страницы, на которой хотите выбрать элемент.</p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>CSS-селектор:</label>
+                        <input type="text" id="css-selector" class="form-control" readonly>
+                        <p class="help-block">Здесь будет отображен CSS-селектор выбранного элемента.</p>
+                    </div>
+                    
+                    <h4>Код:</h4>
+                    <div class="code-block">
+                        <pre><code>// HTML
+                        &lt;div class="form-group"&gt;
+                          &lt;label&gt;URL страницы:&lt;/label&gt;
+                          &lt;div class="input-group"&gt;
+                            &lt;input type="text" id="page-url" class="form-control" placeholder="https://example.com"&gt;
+                            &lt;span class="input-group-btn"&gt;
+                              &lt;button type="button" id="open-selector-btn" class="btn btn-primary"&gt;Открыть&lt;/button&gt;
+                            &lt;/span&gt;
+                          &lt;/div&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class="form-group"&gt;
+                          &lt;label&gt;CSS-селектор:&lt;/label&gt;
+                          &lt;input type="text" id="css-selector" class="form-control" readonly&gt;
+                        &lt;/div&gt;
+
+                        // JavaScript
+                        $(document).ready(function() {
+                          SelectorPicker.init({
+                            urlInputId: 'page-url',
+                            selectorInputId: 'css-selector',
+                            openButtonId: 'open-selector-btn'
+                          });
+                        });</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Программное открытие</h3>
+            </div>
+            <div class="panel-body">
+                <div class="example-section">
+                    <div class="form-group">
+                        <label>CSS-селектор:</label>
+                        <input type="text" id="css-selector-2" class="form-control" readonly>
+                    </div>
+                    
+                    <button type="button" id="programmatic-open-btn" class="btn btn-success">Открыть opencart.com</button>
+                    
+                    <h4>Код:</h4>
+                    <div class="code-block">
+                        <pre><code>// HTML
+                           &lt;div class="form-group"&gt;
+                             &lt;label&gt;CSS-селектор:&lt;/label&gt;
+                             &lt;input type="text" id="css-selector-2" class="form-control" readonly&gt;
+                           &lt;/div&gt;
+
+                           &lt;button type="button" id="programmatic-open-btn" class="btn btn-success"&gt;Открыть opencart.com&lt;/button&gt;
+
+                           // JavaScript
+                           $(document).ready(function() {
+                             SelectorPicker.init({
+                               selectorInputId: 'css-selector-2'
+                             });
+                             
+                             $('#programmatic-open-btn').on('click', function() {
+                               SelectorPicker.open('https://opencart.com');
+                             });
+                           });</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">С callback-функцией</h3>
+            </div>
+            <div class="panel-body">
+                <div class="example-section">
+                    <div class="form-group">
+                        <label>URL страницы:</label>
+                        <div class="input-group">
+                            <input type="text" id="page-url-3" class="form-control" placeholder="https://example.com" value="https://opencart.com">
+                            <span class="input-group-btn">
+                                <button type="button" id="open-selector-btn-3" class="btn btn-primary">Открыть</button>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>CSS-селектор:</label>
+                        <input type="text" id="css-selector-3" class="form-control" readonly>
+                    </div>
+                    
+                    <div class="alert alert-success" id="callback-result" style="display: none;">
+                        <p><strong>Callback вызван!</strong> <span id="callback-message"></span></p>
+                    </div>
+                    
+                    <h4>Код:</h4>
+                    <div class="code-block">
+                        <pre><code>// JavaScript
+                           $(document).ready(function() {
+                             SelectorPicker.init({
+                               urlInputId: 'page-url-3',
+                               selectorInputId: 'css-selector-3',
+                               openButtonId: 'open-selector-btn-3',
+                               onSelect: function(selector) {
+                                 // Показываем результат
+                                 $('#callback-message').text('Выбран селектор: ' + selector);
+                                 $('#callback-result').show();
+                                 
+                                 // Здесь можно выполнить дополнительные действия
+                                 // Например, отправить AJAX-запрос
+                                 console.log('Выбран селектор:', selector);
+                               }
+                             });
+                           });</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Интеграция с OpenCart</h3>
+            </div>
+            <div class="panel-body">
+                <div class="example-section">
+                    <h4>Подключение в контроллере:</h4>
+                    <div class="code-block">
+                        <pre><code>// В методе контроллера
+                        public function index() {
+                            // Другой код...
+                            
+                            $this->document->addStyle('view/javascript/form_builder/extra/selector_picker.css');
+                            $this->document->addScript('view/javascript/form_builder/extra/selector_picker.js');
+                            
+                            // Другой код...
+                        }</code></pre>
+                    </div>
+                    
+                    <h4>Использование в шаблоне:</h4>
+                    <div class="code-block">
+                        <pre><code>&lt;div class="form-group"&gt;
+                          &lt;label class="col-sm-2 control-label"&gt;{{ entry_selector }}&lt;/label&gt;
+                          &lt;div class="col-sm-10"&gt;
+                            &lt;div class="input-group"&gt;
+                              &lt;input type="text" name="selector" value="{{ selector }}" id="input-selector" class="form-control" /&gt;
+                              &lt;span class="input-group-btn"&gt;
+                                &lt;button type="button" id="btn-select-element" class="btn btn-primary"&gt;{{ button_select }}&lt;/button&gt;
+                              &lt;/span&gt;
+                            &lt;/div&gt;
+                          &lt;/div&gt;
+                        &lt;/div&gt;
+
+                        &lt;div class="form-group"&gt;
+                          &lt;label class="col-sm-2 control-label"&gt;{{ entry_url }}&lt;/label&gt;
+                          &lt;div class="col-sm-10"&gt;
+                            &lt;input type="text" name="url" value="{{ url }}" id="input-url" class="form-control" /&gt;
+                          &lt;/div&gt;
+                        &lt;/div&gt;
+
+                        &lt;script type="text/javascript"&gt;
+                        $(document).ready(function() {
+                          // Инициализация Selector Picker
+                          SelectorPicker.init({
+                            urlInputId: 'input-url',
+                            selectorInputId: 'input-selector',
+                            openButtonId: 'btn-select-element'
+                          });
+                        });
+                        &lt;/script&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <!-- Selector Picker JS -->
+    <script src="selector_picker.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Пример 1: Базовый пример
+            SelectorPicker.init({
+                urlInputId: 'page-url',
+                selectorInputId: 'css-selector',
+                openButtonId: 'open-selector-btn'
+            });
+            
+            // Пример 2: Программное открытие
+            SelectorPicker.init({
+                selectorInputId: 'css-selector-2'
+            });
+            
+            $('#programmatic-open-btn').on('click', function() {
+                SelectorPicker.open('https://opencart.com');
+            });
+            
+            // Пример 3: С callback-функцией
+            SelectorPicker.init({
+                urlInputId: 'page-url-3',
+                selectorInputId: 'css-selector-3',
+                openButtonId: 'open-selector-btn-3',
+                onSelect: function(selector) {
+                    // Показываем результат
+                    $('#callback-message').text('Выбран селектор: ' + selector);
+                    $('#callback-result').show();
+                    
+                    // Здесь можно выполнить дополнительные действия
+                    console.log('Выбран селектор:', selector);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
