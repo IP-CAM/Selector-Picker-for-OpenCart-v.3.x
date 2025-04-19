@@ -20,8 +20,8 @@
 2. Подключите файлы в ваш шаблон:
 
 ```html
-<link rel="stylesheet" href="view/javascript/form_builder/extra/selector_picker.css">
-<script src="view/javascript/form_builder/extra/selector_picker.js"></script>
+<link rel="stylesheet" href="view/javascript/selector_picker.css">
+<script src="view/javascript/selector_picker.js"></script>
 ```
 
 ## Использование
